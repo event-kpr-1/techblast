@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate} from 'react-router-dom';
 
 
+
 const HomePage = () => {
     
     const navigate = useNavigate();
@@ -9,19 +10,21 @@ const HomePage = () => {
 
    
     
-    const pass = process.env.PAGE_PASS;
+    const pass = 'kprcas654';
 
     const handlePassword = () => {
         const input = prompt("Enter PassKey");
         if (input === pass) {
             return 1;
         } else {
-            alert("Incorrect PassKey");
+            alert(pass);
+            // alert("Incorrect PassKey");
         }
     };
     const handleNavigate = (path) => {
         if(process.env.NODE_ENV !== 'production'){
             navigate(path)
+            console.log(process.env.PAGE_PASS)
         }else{
             handlePassword() && navigate(path)
         }
