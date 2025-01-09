@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import cloudinary from 'cloudinary'
 
 // db
 import connectDB from './db/connectDB.js';
@@ -19,6 +20,12 @@ app.use(express.json())
 dotenv.config();
 
 const __dirname = path.resolve();
+
+cloudinary.config({ 
+    cloud_name: process.env.CLOUDINARY_NAME, 
+    api_key: process.env.CLOUDINARY_KEY, 
+    api_secret: process.env.CLOUDINARY_SECRET // Click 'View API Keys' above to copy your API secret
+});
 
 
 app.use(cors({

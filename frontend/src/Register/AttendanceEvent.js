@@ -95,7 +95,7 @@ const AttendanceEvent = () => {
   return (
     <div className="relative flex flex-col w-screen h-screen bg-inherit justify-center items-center">
 
-    <div  className="p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto w-auto aspect-square ">
+    <div  className="p-6 bg-white bg-opacity-25 shadow-lg rounded-lg max-w-md mx-auto w-auto aspect-square ">
         <div className="mb-4">
             
             <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">{event}</h1>

@@ -1,4 +1,5 @@
-import Participant from "../model/participant_model.js";
+
+import Participant from "../model/techblast_model.js";
 import Event from "../model/NewEventModel.js";
 export const attended = async(req , res) => {
     try {

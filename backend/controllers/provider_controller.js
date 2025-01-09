@@ -1,5 +1,5 @@
 import Event from "../model/NewEventModel.js";
-import Participant from "../model/participant_model.js";
+import Participant from '../model/techblast_model.js'
 export const printid = async(req , res) => {
     try {
         const {regno , evid} = req.params;
