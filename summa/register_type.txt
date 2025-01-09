@@ -1,0 +1,13 @@
+{
+    "name" : "test1",
+    "email" : "test1@gmail.com",
+    "phone" : "1234567890",
+    "college" : "KPR",
+    "gender" : "M",
+    "regno" : "test1"
+}
+
+link = http://localhost:9000/api/participant/register
+
+test1 = 6730ffd831f34c6cecaa0949
+test2 = 673100f7c2d733041ee4a7a0
