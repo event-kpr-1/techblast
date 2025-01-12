@@ -12,6 +12,7 @@ import connectDB from './db/connectDB.js';
 import providerRoute from './routes/provider_route.js';
 import registerRoute from './routes/register_route.js';
 import attendanceRoute from './routes/attendance_route.js'
+import xlsRoute from './routes/xls_route.js'
 
 
 
@@ -42,6 +43,7 @@ const PORT = process.env.PORT;
 app.use("/api/provider",providerRoute);
 app.use("/api/participant",registerRoute);
 app.use("/api/event",attendanceRoute)
+app.use('/download', xlsRoute);
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname,'/frontend','build')))

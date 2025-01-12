@@ -79,7 +79,7 @@ const MainApp = () => {
             <Route path="register" element={<RegisterForm />} />
             <Route path="attendance" element={<AttendanceEvent />} />
             {/* <Route path="qrscan" element={<QRscan />} /> */}
-            {/* <Route path="test" element={<Test />} /> */}
+            <Route path="test" element={<Test />} />
             <Route path="*" element={<div>404 - Page Not Found</div>} />
           </Routes>
         </body>

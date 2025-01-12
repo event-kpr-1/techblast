@@ -1,35 +1,73 @@
-import React from 'react'
-import toast from 'react-hot-toast';
+import React from 'react';
+import { baseURL } from './constant/url';
 
+const DownloadButton = () => {
+    const handleDownload = async () => {
+        try {
+            const res = await fetch(`${baseURL}/download/xlsx/example.xlsx`, {
+                method: 'GET',
+                
+            });
 
-const Test = () => {
+            // Check if the response is successful
+            if (!res.ok) {
+                throw new Error('Failed to download the file.');
+            }
 
-  const handlePaymentDetails = () => {
-    toast.custom((t) => (
-      <div className="p-5 rounded-lg bg-white shadow-lg">
-        <p>Online Payment / Registration Fee: Rs. 200</p>
-        <p>Make the Payment using the following Account Details</p>
-        <p>Account name: The Principal, </p>
-        <p>Bank: Federal bank</p>
-        <p>Account No.: IFSC Code: FDRL0001092</p>
-        <p>Branch: Coimbatore</p>
-        
-        <button
-          onClick={() => {
-            toast.dismiss(t.id); // Only dismiss the toast when the button is clicked
-          }}
-          className=" bg-red-500 text-white p-2 h-12 w-12  hover:bg-red-600 focus:outline-none"
-        >
-          <span>X</span>
-        </button>
-      </div>
-    ));
-  };
+            // Get the content type from the response headers
+            const contentType = res.headers.get('Content-Type');
 
+            // Check if the response is the correct file type (XLSX)
+            if (contentType !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                throw new Error('Received invalid file type, expected an XLSX file.');
+            }
 
-  return (
-    <div onClick={handlePaymentDetails} className='m-32'>Test</div>
-  )
-}
+            // Read the response as a Blob (binary data for the XLSX file)
+            const blob = await res.blob();
 
-export default Test
+            // Check if the blob is empty
+            if (blob.size === 0) {
+                throw new Error('The downloaded file is empty.');
+            }
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a temporary link to download the file
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'example.xlsx'; // Name for the XLSX file
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up after download
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
+        } catch (error) {
+            console.error('Download error:', error.message);
+            alert(`Failed to download the file: ${error.message}`);
+        }
+    };
+
+    return (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button
+                onClick={handleDownload}
+                style={{
+                    marginTop: '100px',
+                    padding: '10px 20px',
+                    backgroundColor: '#007BFF',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                }}
+            >
+                Download XLSX File
+            </button>
+        </div>
+    );
+};
+
+export default DownloadButton;
