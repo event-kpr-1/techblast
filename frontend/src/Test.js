@@ -2,9 +2,10 @@ import React from 'react';
 import { baseURL } from './constant/url';
 
 const DownloadButton = () => {
-    const handleDownload = async () => {
+    const handleDownload = async ({eventName = 'test ev 2'}) => {
         try {
-            const res = await fetch(`${baseURL}/download/xlsx/example.xlsx`, {
+
+            const res = await fetch(`${baseURL}/download/xlsx/${eventName}`, {
                 method: 'GET',
                 
             });
@@ -36,7 +37,7 @@ const DownloadButton = () => {
             // Create a temporary link to download the file
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'example.xlsx'; // Name for the XLSX file
+            a.download = `${eventName}.xlsx`; // Name for the XLSX file
             document.body.appendChild(a);
             a.click();
 

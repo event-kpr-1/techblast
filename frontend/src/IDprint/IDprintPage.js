@@ -4,8 +4,10 @@ import {BiQrScan} from 'react-icons/bi'
 import { scanner } from '../util/Functionalities';
 import { useReactToPrint } from 'react-to-print';
 import toast from 'react-hot-toast'
+import { HiDocumentDownload } from "react-icons/hi";
 
-import { EventContext } from '../MainApp';
+import { EventContext } from '../MainApp.js';
+import { download } from '../util/Functionalities';
 
 
 
@@ -78,18 +80,37 @@ const IDprintPage = () => {
       
         try {
             print();
+            
+          
         } catch (err) {
           toast.error(err.message)
         }
       };
       const print = useReactToPrint({
         contentRef : printRef,
-        onAfterPrint : () => {
+        onAfterPrint : async() => {
             toast.success('done ✔')
             setId('');
             setQRimg('');
             setDetail({});
             setIsThere('')
+
+            try {
+                const res = await fetch(`${baseURL}/api/event/${eventDetail.event._id || eventURL}/idcard/${id}`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                });
+                const status = await res.json();
+                if (!res.ok) {
+                    throw new Error(status.error || 'participant not found');
+                }
+              
+            } catch (err) {
+               toast.error(err.message);
+            }
             
             inputRef.current.focus();
             
@@ -102,6 +123,13 @@ const IDprintPage = () => {
       
         return (
         <div className="min-h-screen flex items-center justify-center bg-inherit">
+            <button 
+                onClick={() => { download('idcard') }} 
+                className="absolute top-16 right-2 p-2  bg-white bg-opacity-25 rounded-sm  text-white  hover:bg-blue-600 transition duration-200"
+            >
+                <HiDocumentDownload size={24}/>
+
+            </button>
             <div className="bg-white bg-opacity-25 p-8 rounded-xl shadow-lg w-full max-w-lg ">
                 <div className="mb-6">
                     <label htmlFor="Printid" className="block text-lg font-semibold text-white">

@@ -56,6 +56,7 @@ const TechblastSchema = mongoose.Schema({
     }],
     participated : [{
         type : String,
+        timestamps : true
         
     }],
     food : {

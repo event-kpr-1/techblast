@@ -3,13 +3,21 @@ import { sendXlsx } from '../utils/XlsSender.js';
 import Participant from '../model/techblast_model.js';
 
 export const downloadXls = async (req, res) => {
-    const { filename = 'output.xlsx' } = req.params; // Default file name
+    const { filename = 'all' } = req.params; // Default file name
 
     try {
-        // Fetch and transform data
-        const participants = await Participant.find()
-            .select('-team -_id -certificate ')
-            .lean(); // Converts Mongoose documents to plain JS objects
+        // Fetch and filter participants based on the filename
+        let participantsQuery = Participant.find().select('-team -_id -certificate').lean();
+
+        // If filename is not 'all', filter participants who have the filename in their subevent list
+        if (filename === 'idcard' || filename === 'food' || filename === 'kit') {
+            participantsQuery = participantsQuery.where(filename).gt(0);
+        }
+        else if(filename !== 'all') {
+            participantsQuery = participantsQuery.where('participated').elemMatch({ $eq: filename });
+        }
+
+        const participants = await participantsQuery;
 
         // Clean and transform the data (optional, based on your needs)
         const cleanedData = participants.map((participant) => ({
@@ -23,19 +31,19 @@ export const downloadXls = async (req, res) => {
             RegistrationNo: participant.regno,
             TransactionID: participant.transactionID,
             TransactionSC: participant.transactionSC,
-            participated : Array.isArray(participant.participated)
-            ? participant.participated.join(', ') // Join array into a single string
-            : participant.participated,
-            Food: participant.food ? "Yes" : "No",
-            IDCard: participant.idcard ? "Yes" : "No",
-            Kit: participant.kit ? "Yes" : "No",
+            Participated: Array.isArray(participant.participated)
+                ? participant.participated.join(', ') // Join array into a single string
+                : participant.participated,
+            Food: participant.food ,
+            IDCard: participant.idcard ,
+            Kit: participant.kit ,
             EventID: participant.eventID.toString(), // Convert ObjectId to string
             CreatedAt: participant.createdAt.toISOString(),
             UpdatedAt: participant.updatedAt.toISOString(),
         }));
 
         // Step 1: Create the Excel file
-        const filePath = await createExcel(cleanedData, filename);
+        const filePath = await createExcel(cleanedData, `${filename}.xlsx`);
         if (!filePath) {
             return res.status(500).json({ error: 'Error creating Excel file.' });
         }
