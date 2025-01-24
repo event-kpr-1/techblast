@@ -10,6 +10,7 @@ import { EventContext } from '../MainApp.js';
 
 const AttendanceEvent = () => {
     const { eventDetail } = useContext(EventContext);
+    console.log(eventDetail)
     const [id, setId] = useState('');
     const [event, setEvent] = useState('');
     const events = eventDetail.event.subEvents || [];
