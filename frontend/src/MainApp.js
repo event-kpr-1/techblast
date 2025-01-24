@@ -14,6 +14,7 @@ import { baseURL } from './constant/url';
 import techblast2024 from './images/techblast2024.png'
 // import kprlogo from './images/kprlogo.png'
 import kprlogobw from './images/kprlogobw.png'
+import techblast1 from './images/techblast1.png'
 
 export const EventContext = createContext();
 
@@ -66,7 +67,7 @@ const MainApp = () => {
         <body
           className="bg-cover bg-center min-h-screen"
           style={{
-            backgroundImage: `url(${techblast2024})`,
+            backgroundImage: `url(${techblast1})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
