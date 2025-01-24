@@ -12,7 +12,7 @@ const eventProtection = async(req, res, next) => {
         
         return res.status(404).json({error : 'no event found'})
     }
-    // console.log(typeof(get));
+    // console.log('middleware ok');
     (get === '1') && (req.event = event);
     next();
 }

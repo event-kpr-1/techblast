@@ -2,6 +2,7 @@ import express from 'express'
 
 // controllers
 import {printid , printcertificate , getEvent} from '../controllers/provider_controller.js'
+
 import eventProtection from '../middleware/eventProtection_Route.js';
 
 

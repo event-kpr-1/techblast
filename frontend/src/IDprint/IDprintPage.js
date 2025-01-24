@@ -46,6 +46,7 @@ const IDprintPage = () => {
             })
             
             const participant = await res.json();
+            console.log(participant)
             if(!res.ok){
               
               console.log(participant.error)

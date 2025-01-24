@@ -8,7 +8,7 @@ const RegisterForm = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   
   const { eventDetail } = useContext(EventContext);
-
+  console.log(eventDetail.event._id)
   // Create refs for each form input field
   const nameRef = useRef('');
   const emailRef = useRef('');
