@@ -41,21 +41,21 @@ const HomePage = () => {
             
 
             {/* Body */}
-            <main className="flex flex-col gap-3 justify-center items-center h-full pt-16 pb-16 bg-inherit">
+            <main className="flex flex-col gap-3 justify-center items-center h-full pt-16 pb-16  bg-inherit">
                 <button
-                className="btn btn-outline  bg-white w-screen md:w-48"
+                className="btn btn-outline bg-opacity-25  bg-white w-screen md:w-48"
                 onClick={() => navigate('register')}
                 >
                 Register
                 </button>
                 <button
-                className="btn btn-outline   bg-white w-screen md:w-48"
+                className="btn btn-outline  bg-opacity-25 bg-white w-screen md:w-48"
                 onClick={() => handleNavigate('printid')}
                 >
                 Print ID
                 </button>
                 <button
-                className="btn btn-outline   bg-white w-screen md:w-48"
+                className="btn btn-outline  bg-opacity-25 bg-white w-screen md:w-48"
                 onClick={() => handleNavigate('attendance')}
                 >
                 Attendance
