@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 
 const RegisterForm = () => {
   const [isRegistered, setIsRegistered] = useState(false);
-  const [image, setImage] = useState(null);
+  
   const { eventDetail } = useContext(EventContext);
 
   // Create refs for each form input field
@@ -15,13 +15,10 @@ const RegisterForm = () => {
   const phoneRef = useRef('');
   const collegeRef = useRef('');
   const regnoRef = useRef('');
-  const genderRef = useRef('');
-  const departmentRef = useRef('');
-  const transactionIDRef = useRef('');
-  const transactionSCRef = useRef(''); // Separate ref for file input
-  const yearOfStudyRef = useRef('');
+  
+  
 
-  // Handle form submission mutation
+  
    
   
 
@@ -37,11 +34,7 @@ const RegisterForm = () => {
         phone: phoneRef.current?.value,
         college: collegeRef.current?.value,
         regno: regnoRef.current?.value,
-        gender: genderRef.current?.value,
-        department: departmentRef.current?.value,
-        yearOfStudy: yearOfStudyRef.current?.value,
-        transactionID: transactionIDRef.current?.value,
-        transactionSC: image,
+        
       };
 
       // Check for missing fields
@@ -61,15 +54,7 @@ const RegisterForm = () => {
         toast.error('College is missing');
         collegeRef.current?.focus();
         return;
-      } else if (!data.transactionID) {
-        toast.error('Transaction ID is missing');
-        transactionIDRef.current?.focus();
-        return;
-      } else if (!data.transactionSC) {
-        toast.error('Transaction screenshot is missing');
-        transactionSCRef.current?.focus();
-        return;
-      } else if (eventDetail.event?.eventFor === 'Students' && !data.regno) {
+      }  else if (eventDetail.event?.eventFor === 'Students' && !data.regno) {
         toast.error('Register Number is missing');
         regnoRef.current?.focus();
         return;
@@ -113,36 +98,9 @@ const RegisterForm = () => {
     }
   });
 
-  const handlePaymentDetails = () => {
-    toast.custom((t) => (
-      <div className="p-5 rounded-lg bg-white shadow-lg max-w-xs">
-        <p>Online Payment / Registration Fee: Rs. 200</p>
-        <p>Make the Payment using the following Account Details:</p>
-        <p>Account name: The Principal</p>
-        <p>Bank: Federal Bank</p>
-        <p>Account No. IFSC Code: FDRL0001092</p>
-        <p>Branch: Coimbatore</p>
+  
 
-        <button
-          onClick={() => toast.dismiss(t.id)} // Only dismiss the toast when the button is clicked
-          className="bg-red-500 text-white p-2 h-12 w-12 rounded-full hover:bg-red-600 focus:outline-none"
-        >
-          <span className="font-bold">X</span>
-        </button>
-      </div>
-    ));
-  };
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result); // Set the image source to the uploaded file
-      };
-      reader.readAsDataURL(file); // Read the file as a Data URL
-    }
-  };
+  
 
   // Render success component if registration is successful
   if (isRegistered) {
@@ -154,7 +112,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <div className="flex justify-center items-center py-20 min-h-screen bg-gradient-to-r bg-inherit text-black">
+    <div className="flex justify-center items-center py-20 min-h-screen bg-gradient-to-r bg-inherit text-white">
       
       <div className="w-full max-w-lg p-8 bg-white bg-opacity-25 rounded-lg shadow-lg">
 
@@ -207,43 +165,10 @@ const RegisterForm = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="department" className="block text-sm font-medium text-white">Department:</label>
-            <input
-              type="text"
-              id="department"
-              placeholder="Your department"
-              ref={departmentRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
-            />
-          </div>
-          <div>
-            <label htmlFor="yearofstudy" className="block text-sm font-medium text-white">Year:</label>
-            <select
-              id="yearofstudy"
-              ref={yearOfStudyRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
-            <select
-              id="gender"
-              ref={genderRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
-            >
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="O">Other</option>
-            </select>
-          </div>
+          
+          
 
-          {eventDetail.event?.eventFor === 'Students' && (
+          
             <div>
               <label htmlFor="regno" className="block text-sm font-medium text-white">Register Number:</label>
               <input
@@ -254,35 +179,9 @@ const RegisterForm = () => {
                 className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
               />
             </div>
-          )}
+          
 
-          <div>
-            <p className="text-white hover:cursor-pointer" onClick={handlePaymentDetails}>
-              For Payment details <span className="text-blue-400 underline">click here</span>
-            </p>
-          </div>
-
-          <div>
-            <label htmlFor="transid" className="block text-sm font-medium text-white">Transaction ID</label>
-            <input
-              type="text"
-              id="transid"
-              placeholder="Enter the Transaction ID"
-              ref={transactionIDRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
-            />
-          </div>
-          <div>
-            <label htmlFor="transsc" className="block text-sm font-medium text-white">Transaction Screenshot</label>
-            <input
-              type="file"
-              accept="image/*"
-              id="transsc"
-              onChange={handleImageUpload}
-              ref={transactionSCRef} // Use separate ref for file input
-              className="block w-full mt-1 p-2 border text-white border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
-            />
-          </div>
+          
 
           {/* SUBMIT */}
           <div className="text-center">

@@ -17,8 +17,8 @@ const HomePage = () => {
         if (input === pass) {
             return 1;
         } else {
-            alert(pass);
-            // alert("Incorrect PassKey");
+            // alert(pass);
+            alert("Incorrect PassKey");
         }
     };
     const handleNavigate = (path) => {

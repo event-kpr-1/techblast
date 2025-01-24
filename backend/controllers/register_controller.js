@@ -5,7 +5,7 @@ import { sendMail } from "../utils/EmailSender.mjs";
 
 export const register = async (req , res) => {
     try {
-        const {name , email , college , gender , regno, phone , department , yearOfStudy , transactionID } = req.body
+        const {name , email , college , regno, phone  } = req.body
         let {transactionSC} = req.body
         const {evid} = req.params;
         
@@ -34,13 +34,7 @@ export const register = async (req , res) => {
             return res.status(400).json({error : "invaild phone number"})
         }
 
-        // TRANSACTION SC
-        try {
-            const img = await cloudinary.uploader.upload(transactionSC);
-            transactionSC = img.secure_url;
-        } catch (error) {
-            return res.status(500).json({ error: 'Failed to upload transaction screenshot' });
-        }
+       
 
 
         // creating new Participant
@@ -49,13 +43,8 @@ export const register = async (req , res) => {
             email : email,
             college : college,
             phone : phone,
-            gender : gender,
             regno : regno,
             eventID : evid,
-            department : department,
-            transactionID : transactionID,
-            transactionSC : transactionSC,
-            yearOfStudy : yearOfStudy
             
         })
         console.log(newParticipant)
