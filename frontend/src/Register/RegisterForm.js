@@ -117,7 +117,7 @@ const RegisterForm = () => {
       <div className="w-full max-w-lg p-8 bg-white bg-opacity-25 rounded-lg shadow-lg">
 
 
-        <h2 className="text-2xl font-semibold text-center text-white mb-6">Registration Form</h2>
+        <h2 className="text-2xl font-semibold text-center text-white mb-6 underline">Registration Form</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* NAME */}
           <div>
@@ -127,7 +127,7 @@ const RegisterForm = () => {
               id="name"
               placeholder="Your name"
               ref={nameRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
+              className="block w-full mt-1 p-2 border text-black bg-white bg-opacity-85 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
             />
           </div>
           {/* EMAIL */}
@@ -138,7 +138,7 @@ const RegisterForm = () => {
               id="email"
               placeholder="abc@example.com"
               ref={emailRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
+              className="block w-full mt-1 p-2 border text-black bg-white bg-opacity-85 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
             />
           </div>
           {/* PHONE NUMBER */}
@@ -150,7 +150,7 @@ const RegisterForm = () => {
               placeholder="1234567890"
               ref={phoneRef}
               pattern="[0-9]{10}"
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
+              className="block w-full mt-1 p-2 border text-black bg-white bg-opacity-85 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
             />
           </div>
           {/* COLLEGE */}
@@ -161,7 +161,7 @@ const RegisterForm = () => {
               id="college"
               placeholder="Your college name"
               ref={collegeRef}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
+              className="block w-full mt-1 p-2 border text-black bg-white bg-opacity-85 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
             />
           </div>
 
@@ -176,7 +176,7 @@ const RegisterForm = () => {
                 id="regno"
                 placeholder="Your register number"
                 ref={regnoRef}
-                className="block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
+                className="block w-full mt-1 p-2 border text-black bg-white bg-opacity-85  border-gray-300 rounded-md shadow-sm focus:ring focus:ring-green-300 focus:outline-none"
               />
             </div>
           

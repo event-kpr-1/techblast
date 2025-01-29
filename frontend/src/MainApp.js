@@ -65,7 +65,7 @@ const MainApp = () => {
         />
       </header>
         <body
-          className="bg-cover bg-center min-h-screen"
+          className="bg-cover bg-center min-h-screen "
           style={{
             backgroundImage: `url(${techblast2})`,
             backgroundSize: "cover",

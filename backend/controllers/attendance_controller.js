@@ -20,8 +20,8 @@ export const attended = async(req , res) => {
         
         
         else{
-            if(participant.participated.length >=2){
-                return res.status(200).json({msg : "participated 2"})
+            if(participant.participated.length >=3){
+                return res.status(200).json({msg : "participated 3"})
             }
             if(participant.participated.includes([event])){
                 res.status(200).json({msg : "already participated"})

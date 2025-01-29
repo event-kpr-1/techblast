@@ -96,7 +96,7 @@ const AttendanceEvent = () => {
 
             <div className="space-y-4">
                 <div className="flex flex-col">
-                    <label htmlFor="id" className="text-sm font-medium text-gray-600">Scan ID:</label>
+                    <label htmlFor="id" className="text-sm font-medium text-black text-center bg-white bg-opacity-80">Scan ID</label>
                     <div className='flex flex-row justify-evenly gap-2'>            
                         <input 
                             type="text" 
@@ -105,14 +105,14 @@ const AttendanceEvent = () => {
                             ref={inputRef} 
                             className="mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 flex-1"
                         />
-                        <button className="mt-1 flex justify-center items-center bg-white bg-opacity-25 border rounded-lg focus:outline-none focus:ring-2 h-auto w-10 text-center" onClick={handleScan}>
+                        <button className="mt-1 flex justify-center items-center bg-white bg-opacity-75 border rounded-lg focus:outline-none focus:ring-2 h-auto w-10 text-center" onClick={handleScan}>
                             <BiQrScan/>
                         </button>
                     </div>
                 </div>
 
                 <div className="flex flex-col">
-                    <label htmlFor="event" className="text-sm font-medium text-gray-600">Select Event:</label>
+                    <label htmlFor="event" className="text-sm font-medium text-black text-center bg-white bg-opacity-80">Select Event</label>
                     <select 
                         name="event" 
                         id="event" 

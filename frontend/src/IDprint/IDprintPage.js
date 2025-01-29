@@ -170,7 +170,7 @@ const IDprintPage = () => {
                     </button>
                 </div>
 
-                <p className="text-center text-gray-600 font-medium mt-4">{isThere}</p>
+                <p className="text-center font-medium mt-4 text-black bg-white bg-opacity-80 ">{isThere}</p>
                 <div
                     ref={scannerRef}
                     id={qrCodeRegionId}

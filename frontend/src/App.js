@@ -13,8 +13,8 @@ const App = () => {
     <div>
       <Routes>
        
-        <Route path = '/:evid/*' element = {<MainApp/>} />
         <Route path = '/test' element = {<Test/>} />
+        <Route path = '/:evid/*' element = {<MainApp/>} />
       </Routes>
         
       <Toaster/>
